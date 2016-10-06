@@ -1,0 +1,44 @@
+{
+  "name": "imagine-server",
+  "version": "0.0.1",
+  "description": "koa backend for imagine",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js",
+    "dev": "./node_modules/.bin/nodemon index.js",
+    "test": "NODE_ENV=test ./node_modules/.bin/mocha --compilers js:babel-register --require babel-polyfill",
+    "lint": "eslint src/**/*.js"
+  },
+  "author": "Thomas Maximini <tmaximini@gmail.com>",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "debug": "^2.2.0",
+    "glob": "^7.0.0",
+    "jsonwebtoken": "^7.1.9",
+    "koa": "^2.0.0",
+    "koa-bodyparser": "^3.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-generic-session": "^1.10.1",
+    "koa-logger": "^2.0.0",
+    "koa-passport": "^2.0.1",
+    "koa-router": "^7.0.1",
+    "koa-static": "^2.0.0",
+    "pg": "^6.1.0",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.24.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.5.1",
+    "babel-polyfill": "^6.5.0",
+    "babel-preset-es2015": "^6.16.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.16.3",
+    "eslint": "^3.7.1",
+    "eslint-config-standard": "^6.2.0",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
+    "nodemon": "^1.10.2"
+  }
+}
