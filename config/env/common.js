@@ -1,3 +1,3 @@
 export default {
-  port: process.env.PORT || 3000
+  http_port: process.env.PORT || 3333
 }

@@ -9,6 +9,7 @@ import serve from 'koa-static'
 import config from '../config'
 import { errorMiddleware } from '../src/middleware'
 import routes from '../src/routes'
+import db from '../src/models'
 
 const app = new Koa()
 app.keys = [config.session]
@@ -28,9 +29,12 @@ app
   .use(routes.routes())
   .use(routes.allowedMethods());
 
-
-app.listen(config.port, () => {
-  console.log(`Server started on ${config.port}`)
+db.sequelize
+  .sync({ force: false })
+  .then(() => {
+    app.listen(config.http_port, () => {
+      console.log(`Server started on ${config.http_port}`)
+  })
 })
 
 export default app

@@ -15,11 +15,13 @@ fs
     db[model.name] = model
   })
 
-for (modelName of db) {
+for (const modelName in db) {
   if ('associate' in db[modelName]) {
     db[modelName].associate(db)
   }
 }
+
+console.log('db:', db);
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize
