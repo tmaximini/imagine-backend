@@ -11,6 +11,8 @@ import { errorMiddleware } from '../src/middleware'
 import routes from '../src/routes'
 import db from '../src/models'
 
+const env = process.env.NODE_ENV || 'development'
+
 const app = new Koa()
 app.keys = [config.session]
 
@@ -33,7 +35,7 @@ db.sequelize
   .sync({ force: false })
   .then(() => {
     app.listen(config.http_port, () => {
-      console.log(`Server started on ${config.http_port}`)
+      console.log(`Server started on ${config.http_port} in ${env}`)
   })
 })
 
