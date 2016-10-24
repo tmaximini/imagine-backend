@@ -27,9 +27,7 @@ app.use(errorMiddleware())
 // app.use(passport.initialize())
 // app.use(passport.session())
 
-app
-  .use(routes.routes())
-  .use(routes.allowedMethods());
+app.use(routes)
 
 db.sequelize
   .sync({ force: false })

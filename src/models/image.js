@@ -1,4 +1,3 @@
-
 // Image model
 export default function(sequelize, DataTypes) {
   var Image = sequelize.define('Image', {
