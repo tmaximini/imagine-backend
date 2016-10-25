@@ -1,11 +1,11 @@
 import Router from 'koa-router'
 const imageRouter = new Router({ prefix: '/images'})
-import * as ImageActions from '../services/image'
+import * as ImageService from '../services/image'
 
 imageRouter
   .get('/', async (ctx, next) => {
     try {
-      await ImageActions.findAll()
+      await ImageService.findAll()
         .then(images => ctx.body = images)
     } catch(e) {
       console.log(e)
@@ -14,7 +14,7 @@ imageRouter
   })
   .get('/:id', async (ctx, next) => {
     try {
-      await ImageActions.findById(ctx.params.id)
+      await ImageService.findById(ctx.params.id)
         .then(image => ctx.body = image)
     } catch(e) {
       console.log(e)
@@ -23,7 +23,7 @@ imageRouter
   })
   .post('/', async (ctx, next) => {
     try {
-      await ImageActions.create(ctx.request.body)
+      await ImageService.create(ctx.request.body)
         .then(image => ctx.body = image)
     } catch(e) {
       console.log(e)

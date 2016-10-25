@@ -1,25 +1,33 @@
 import bcrypt from 'bcrypt'
 
+const SALT_FACTOR = 10
+
 // The user model
 export default function(sequelize, DataTypes) {
   const User = sequelize.define('User', {
+    uuid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     username: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         notEmpty: true
       }
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         isEmail: true
       }
@@ -45,15 +53,15 @@ export default function(sequelize, DataTypes) {
     }
   })
 
-  User.hook('beforeCreate', (user, next) => {
-    bcrypt.genSalt(SALT_FACTOR, (err, salt) => salt)
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
+  User.hook('beforeCreate', function(user, options, cb) {
+    console.log('user before create!', user.password, options, cb);
+    bcrypt.hash(user.password, SALT_FACTOR, function(err, hash) {
       if (err) {
-        console.log(err)
-        return next(err)
+        console.error(err)
+        user = {}
       } else {
         user.password = hash
-        return next(null, user)
+        cb(null, user)
       }
     })
   })

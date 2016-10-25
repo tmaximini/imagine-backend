@@ -1,4 +1,5 @@
 import models from '../models'
+import uuid from 'uuid'
 
 
 export async function findAll(ctx) {
@@ -12,9 +13,8 @@ export async function findById(id) {
 }
 
 export async function create(params) {
-  console.log('...params:', ...params)
-
   return models.Image.create({
+    uuid: uuid.v4(),
     ...params
   })
 }

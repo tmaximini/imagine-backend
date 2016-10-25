@@ -5,6 +5,8 @@ import logger from 'koa-logger'
 import session from 'koa-generic-session'
 import passport from 'koa-passport'
 import serve from 'koa-static'
+import json from 'koa-json'
+import cors from 'koa-cors'
 
 import config from '../config'
 import { errorMiddleware } from '../src/middleware'
@@ -18,6 +20,8 @@ app.keys = [config.session]
 
 
 app.use(convert(logger()))
+app.use(cors())
+app.use(json())
 app.use(bodyParser())
 app.use(session())
 app.use(errorMiddleware())

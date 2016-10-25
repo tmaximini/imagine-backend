@@ -1,6 +1,11 @@
 // Image model
 export default function(sequelize, DataTypes) {
-  var Image = sequelize.define('Image', {
+  const Image = sequelize.define('Image', {
+    uuid: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
     description: DataTypes.STRING,
     url: DataTypes.STRING
   }, {
