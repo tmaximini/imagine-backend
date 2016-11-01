@@ -1,8 +1,10 @@
 import Router from 'koa-router'
 const imageRouter = new Router({ prefix: '/images'})
 import * as ImageService from '../services/image'
+import { ensureUser } from '../middleware/auth'
 
 imageRouter
+  .use(async (ctx, next) => await ensureUser(ctx, next))
   .get('/', async (ctx, next) => {
     try {
       await ImageService.findAll()
