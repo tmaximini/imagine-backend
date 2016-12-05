@@ -8,8 +8,10 @@ userRouter
   .get('/', async (ctx, next) => {
     try {
       await UserService.findAll()
-        .then(users => ctx.body = users)
-    } catch(e) {
+        .then(users => { 
+          ctx.body = users
+        })
+    } catch (e) {
       console.log(e)
       next(e)
     }
@@ -17,8 +19,10 @@ userRouter
   .get('/:id', async (ctx, next) => {
     try {
       await UserService.findById(ctx.params.id)
-        .then(user => ctx.body = user)
-    } catch(e) {
+        .then(user => {
+          ctx.body = user
+        })
+    } catch (e) {
       console.log(e)
       next(e)
     }
@@ -26,8 +30,10 @@ userRouter
   .get('/name/:username', async (ctx, next) => {
     try {
       await UserService.findByUsername(ctx.params.username)
-        .then(user => ctx.body = user)
-    } catch(e) {
+        .then(user => {
+          ctx.body = user
+        })
+    } catch (e) {
       console.log(e)
       next(e)
     }
@@ -35,8 +41,10 @@ userRouter
   .post('/', async (ctx, next) => {
     try {
       await UserService.create(ctx.request.body)
-        .then(user => ctx.body = user)
-    } catch(e) {
+        .then(user => {
+          ctx.body = user
+        })
+    } catch (e) {
       console.log(e)
       next(e)
     }
@@ -51,9 +59,7 @@ userRouter
       } else {
         ctx.body = result
       }
-
-    } catch(e) {
-
+    } catch (e) {
       console.log(e)
       next(e)
     }

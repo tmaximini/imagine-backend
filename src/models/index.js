@@ -21,7 +21,7 @@ for (const modelName in db) {
   }
 }
 
-console.log('db:', db);
+console.log('db:', db)
 
 db.sequelize = sequelize
 db.Sequelize = Sequelize

@@ -5,37 +5,37 @@ import jwt from 'jsonwebtoken'
 
 const JWT_SECRET = process.env.JWT_SECRET || 'SomeReallyHardToGuessString'
 
-export async function findAll(ctx) {
+export async function findAll (ctx) {
   return models.User.findAll()
 }
 
-export async function findById(id) {
+export async function findById (id) {
   return models.User.findOne({
     where: { id }
   })
 }
 
-export async function findByUuid(uuid) {
+export async function findByUuid (uuid) {
   return models.User.findOne({
     where: { uuid }
   })
 }
 
-export async function findByUsername(username) {
+export async function findByUsername (username) {
   return models.User.findOne({
     where: { username }
   })
 }
 
-export async function create(params) {
+export async function create (params) {
   return models.User.create({
     uuid: uuid.v4(),
     ...params
   })
 }
 
-export async function login({ username, password }) {
-  console.log('username:', username);
+export async function login ({ username, password }) {
+  console.log('username:', username)
 
   try {
     const user = await findByUsername(username)
@@ -49,19 +49,16 @@ export async function login({ username, password }) {
     return !loginMatch ? false : {
       token: jwt.sign(claim, JWT_SECRET)
     }
-  }
-
-  catch (e) {
+  } catch (e) {
     return false
   }
 }
 
-async function _handleLogin(user, clearTextPw) {
+async function _handleLogin (user, clearTextPw) {
   try {
     const loginMatch = await bcrypt.compare(clearTextPw, user.password)
     return loginMatch
-  }
-  catch (e) {
+  } catch (e) {
     return false
   }
 }

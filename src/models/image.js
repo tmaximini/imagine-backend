@@ -1,5 +1,5 @@
 // Image model
-export default function(sequelize, DataTypes) {
+export default function (sequelize, DataTypes) {
   const Image = sequelize.define('Image', {
     uuid: {
       type: DataTypes.STRING,
@@ -10,7 +10,7 @@ export default function(sequelize, DataTypes) {
     url: DataTypes.STRING
   }, {
     classMethods: {
-      associate: function(models) {
+      associate: function (models) {
         Image.belongsTo(models.User, {
           onDelete: 'CASCADE',
           foreignKey: {
