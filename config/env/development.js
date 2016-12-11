@@ -2,9 +2,9 @@ export default {
   session: 'secret-boilerplate-token',
   token: 'secret-jwt-token',
   database: 'db_imagine_development',
-  username: 'root',
-  password: null,
-  host: '127.0.0.1',
+  username: 'imagine',
+  password: 'imagine',
+  host: 'localhost',
   port: 5432,
   dialect: 'postgres'
 }

@@ -3,7 +3,10 @@ import path from 'path'
 import Sequelize from 'sequelize'
 import config from '../../config'
 
-const sequelize = new Sequelize(config.database, config.username, config.password, config)
+const sequelize =  process.env.DATABASE_URL
+  ? new Sequelize(process.env.DATABASE_URL)
+  : new Sequelize(config.database, config.username, config.password, config)
+
 const db = {}
 
 // iterate over all models and import them to sequelize

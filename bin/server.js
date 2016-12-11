@@ -34,7 +34,7 @@ app.use(errorMiddleware())
 app.use(routes)
 
 db.sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     app.listen(config.http_port, () => {
       console.log(`Server started on ${config.http_port} in ${env}`)

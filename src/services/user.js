@@ -30,7 +30,7 @@ export async function findByUsername (username) {
 export async function create (params) {
   return models.User.create({
     uuid: uuid.v4(),
-    ...params
+    ...params,
   })
 }
 

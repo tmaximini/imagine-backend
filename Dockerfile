@@ -1,16 +1,19 @@
-FROM node:6.7
+FROM node:6.9.1
 
 MAINTAINER tmaximini@gmail.com
 
-RUN useradd --user-group --create-home --shell /bin/false app
+# Create app directory
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
-ENV HOME=/home/app
-
-COPY package.json $HOME/imagine/
-RUN chown -R app:app $HOME/*
-
-USER app
-WORKDIR $HOME/imagine
+# Install app dependencies
+COPY package.json /usr/src/app/
 RUN npm install
 
-CMD ["node", "index.js"]
+# Bundle app source
+COPY . /usr/src/app
+
+EXPOSE 3333
+
+# currently used for development only
+CMD ["./node_modules/.bin/nodemon", "index.js"]
